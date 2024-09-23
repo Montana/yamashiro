@@ -4,7 +4,7 @@
 
 ![Yo](https://github.com/user-attachments/assets/310eb46d-c158-4f06-92f0-04f030bd0af3)
 
-Yamashiro is a worker implementation in Rust, designed to process tasks sequentially.
+Yamashiro is a worker implementation in Rust, designed to process tasks sequentially for Travis CI.
 
 ## Features
 
