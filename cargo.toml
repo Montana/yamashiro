@@ -1,0 +1,6 @@
+[package]
+name = "yamashiro"
+version = "0.1.0"
+edition = "2024"
+authors = ["Michael Mendy <montana@linux.com>"]
+description = "Queue worker implementation in Rust"
