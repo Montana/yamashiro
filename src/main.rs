@@ -1,6 +1,9 @@
-use std::thread;
+use std::sync::Arc;
 use std::time::Duration;
+use tokio::task;
+use tokio::time::sleep;
 
+#[derive(Clone)]
 struct Task {
     id: u32,
     duration: u64,
@@ -15,21 +18,34 @@ impl Yamashiro {
         Yamashiro { worker_id }
     }
 
-    fn process_task(&self, task: Task) {
+    async fn process_task(&self, task: Task) -> Result<(), Box<dyn std::error::Error>> {
         println!("Worker {} started processing task {}", self.worker_id, task.id);
-        thread::sleep(Duration::from_secs(task.duration));
+        sleep(Duration::from_secs(task.duration)).await;
         println!("Worker {} completed task {}", self.worker_id, task.id);
+        Ok(())
     }
 
-    fn run(&self, tasks: Vec<Task>) {
+    async fn run(&self, tasks: Vec<Task>) -> Result<(), Box<dyn std::error::Error>> {
+        let mut handles = vec![];
         for task in tasks {
-            self.process_task(task);
+            let worker = self.clone();
+            let handle = task::spawn(async move {
+                worker.process_task(task).await
+            });
+            handles.push(handle);
         }
+
+        for handle in handles {
+            handle.await??;
+        }
+
+        Ok(())
     }
 }
 
-fn main() {
-    let worker = Yamashiro::new(1);
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let worker = Arc::new(Yamashiro::new(1));
     let tasks = vec![
         Task { id: 1, duration: 2 },
         Task { id: 2, duration: 1 },
@@ -37,6 +53,8 @@ fn main() {
     ];
 
     println!("Yamashiro worker starting...");
-    worker.run(tasks);
+    worker.run(tasks).await?;
     println!("Yamashiro worker finished all tasks.");
+
+    Ok(())
 }
