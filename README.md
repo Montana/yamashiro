@@ -1,4 +1,9 @@
+[![Build Status](https://app.travis-ci.com/Montana/yamashiro.svg?token=U865GtC2ptqX3Ezf3Fzb&branch=master)](https://app.travis-ci.com/Montana/yamashiro)
+
 # Yamashiro 
+
+![Yo](https://github.com/user-attachments/assets/310eb46d-c158-4f06-92f0-04f030bd0af3)
+
 Yamashiro is a worker implementation in Rust, designed to process tasks sequentially.
 
 ## Features
