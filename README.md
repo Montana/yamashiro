@@ -32,4 +32,4 @@ cargo run
 
 ### Author
 
->**Michael Mendy (2024)**
+>**Michael Mendy (2024) for Travis CI, GmbH.** 
