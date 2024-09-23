@@ -14,6 +14,7 @@ cache: cargo
 
 before_script:
   - rustup component add clippy
+  - cargo install --force cargo-pants
 
 script:
   - cargo build --verbose
