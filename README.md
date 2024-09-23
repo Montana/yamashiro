@@ -30,6 +30,22 @@ Run the project with:
 cargo run
 ```
 
+Run tests with `cargo-pants`: 
+
+```bash
+ cargo pants --loud
+```
+To test `cargo-pants` run: 
+
+```bash
+cargo pants --pants_style JNCO
+```
+You should see something like this:
+
+![Screenshot 2024-09-23 at 11 43 35 AM](https://github.com/user-attachments/assets/c1b33d1d-c339-4d1f-ad0f-ecac029b9e3a)
+
+Once you do, enjoy using Yamashiro strategically in builds. 
+
 ### Author
 
 >**Michael Mendy (2024) for Travis CI, GmbH.** 
